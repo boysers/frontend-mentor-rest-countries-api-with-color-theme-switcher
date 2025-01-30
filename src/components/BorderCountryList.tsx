@@ -1,11 +1,11 @@
 import { Link } from "react-router";
 import { css } from "../../styled-system/css";
-import type { BorderCountries as BorderCountries } from "../types";
+import type { BorderCountries } from "../types";
 
-type BorderCountriesProps = { borders: BorderCountries[] };
+type BorderCountryListProps = { borders: BorderCountries[] };
 
-function BorderCountries({ borders }: BorderCountriesProps) {
-  const containerStyle = css({
+function BorderCountryList({ borders }: BorderCountryListProps) {
+  const borderCountryListStyle = css({
     display: "flex",
     gap: "1rem",
     flexDirection: {
@@ -29,6 +29,8 @@ function BorderCountries({ borders }: BorderCountriesProps) {
     gap: "0.5rem",
   });
 
+  const itemStyle = css({ margin: 0 });
+
   const linkStyle = css({
     display: "block",
     textDecoration: "none",
@@ -48,13 +50,23 @@ function BorderCountries({ borders }: BorderCountriesProps) {
     },
   });
 
+  const emptyBorderCountriesStyle = css({
+    margin: 0,
+    paddingBlock: "0.3rem",
+    color: {
+      base: "gray.900",
+      _dark: "gray.300",
+    },
+    fontWeight: "300",
+  });
+
   return (
-    <div className={containerStyle}>
+    <div className={borderCountryListStyle}>
       <span className={labelStyle}>Border Countries:</span>{" "}
       {borders.length > 0 ? (
         <ul className={listStyle}>
           {borders.map((border) => (
-            <li key={border.cca3} className={css({ margin: 0 })}>
+            <li key={border.cca3} className={itemStyle}>
               <Link
                 to={`/country/${border.cca3.toLowerCase()}`}
                 className={linkStyle}
@@ -65,17 +77,7 @@ function BorderCountries({ borders }: BorderCountriesProps) {
           ))}
         </ul>
       ) : (
-        <p
-          className={css({
-            margin: 0,
-            paddingBlock: "0.3rem",
-            color: {
-              base: "gray.900",
-              _dark: "gray.300",
-            },
-            fontWeight: "300",
-          })}
-        >
+        <p className={emptyBorderCountriesStyle}>
           Bordering countries are not present.
         </p>
       )}
@@ -83,4 +85,4 @@ function BorderCountries({ borders }: BorderCountriesProps) {
   );
 }
 
-export default BorderCountries;
+export default BorderCountryList;

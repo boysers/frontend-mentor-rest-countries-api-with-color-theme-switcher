@@ -1,4 +1,4 @@
-import { fetchData } from "./helps";
+import { fetchData } from "./helpers";
 import { BorderCountries, Countries, Country } from "./types";
 
 const API_BASE_URL = "https://restcountries.com/v3.1";

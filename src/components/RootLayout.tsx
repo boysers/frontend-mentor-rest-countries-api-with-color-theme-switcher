@@ -11,7 +11,7 @@ function RootLayout() {
 
   const [colorMode, setColorMode] = useState<ColorMode>(() => {
     const savedMode = localStorage.getItem("color-mode");
-    return savedMode === ColorMode.Light ? ColorMode.Light : ColorMode.Dark;
+    return savedMode === ColorMode.Dark ? ColorMode.Dark : ColorMode.Light;
   });
   const [query, setQuery] = useState<string>("");
   const [region, setRegion] = useState<string>("");
@@ -30,23 +30,31 @@ function RootLayout() {
     localStorage.setItem("color-mode", colorMode);
   }, [colorMode]);
 
+  const headerContainerStyle = css({
+    position: "sticky",
+    top: 0,
+    zIndex: "100",
+  });
+
+  const mainStyle = css({ overflow: isNavigating ? "hidden" : "auto" });
+
+  const loaderContainer = css({
+    position: "fixed",
+    top: "45%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  });
+
   return (
     <ColorModeContext.Provider value={{ colorMode, toggleColorMode }}>
       <QueryContext.Provider value={{ query, setQuery }}>
         <RegionContext.Provider value={{ region, setRegion }}>
-          <div className={css({ position: "sticky", top: 0, zIndex: "100" })}>
+          <div className={headerContainerStyle}>
             <Header />
           </div>
-          <div className={css({ overflow: isNavigating ? "hidden" : "auto" })}>
+          <div className={mainStyle}>
             {isNavigating && (
-              <div
-                className={css({
-                  position: "fixed",
-                  top: "45%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                })}
-              >
+              <div className={loaderContainer}>
                 <div
                   className={css({
                     animation: isHomePage

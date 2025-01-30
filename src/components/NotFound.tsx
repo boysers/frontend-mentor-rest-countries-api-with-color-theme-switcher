@@ -97,7 +97,7 @@ function NotFound() {
       >
         <img
           src="/world-map-dark.png"
-          alt=""
+          alt="background world map."
           className={css({ width: "100%", height: "auto" })}
         />
       </div>

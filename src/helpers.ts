@@ -11,3 +11,7 @@ export async function fetchData<T = unknown>(url: string): Promise<T> {
 
   return response.json() as Promise<T>;
 }
+
+export function numberFormat(value: number | bigint): string {
+  return new Intl.NumberFormat().format(value);
+}

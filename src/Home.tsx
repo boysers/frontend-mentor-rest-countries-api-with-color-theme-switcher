@@ -73,32 +73,12 @@ function Home() {
         setPage((prevPage) => prevPage + 1);
       }
     };
-    handleScroll();
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [location.state, query, region]);
-
-  const containerStyle = css({
-    fontSize: "0.875rem",
-    display: "grid",
-    gridTemplateColumns: {
-      base: "1fr",
-      sm: "repeat(2, 1fr)",
-      md: "repeat(3, 1fr)",
-      lg: "repeat(4, 1fr)",
-    },
-    flexWrap: "wrap",
-    gap: {
-      base: "2rem",
-      lg: "4rem",
-    },
-    justifyContent: "center",
-    justifyItems: "center",
-    marginBlock: "3rem",
-  });
 
   const inputStyle = css({
     backgroundColor: "element",
@@ -203,7 +183,26 @@ function Home() {
           ))}
         </select>
       </div>
-      <div className={containerStyle}>
+      <div
+        className={css({
+          fontSize: "0.875rem",
+          display: "grid",
+          gridTemplateColumns: {
+            base: "1fr",
+            sm: "repeat(2, 1fr)",
+            md: "repeat(3, 1fr)",
+            lg: "repeat(4, 1fr)",
+          },
+          flexWrap: "wrap",
+          gap: {
+            base: "2rem",
+            lg: "4rem",
+          },
+          justifyContent: "center",
+          justifyItems: "center",
+          marginBlock: "3rem",
+        })}
+      >
         {filteredCountries.length > 0 ? (
           filteredCountries.slice(0, page * itemsPerPage).map((country) => (
             <article

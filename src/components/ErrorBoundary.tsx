@@ -5,9 +5,11 @@ import { useEffect } from "react";
 function ErrorBoundary() {
   const error = useRouteError();
 
-  let isNotFound = false;
+  const isEnvNodeDev = import.meta.env.DEV;
+
   let title = "Oops! Something went wrong.";
   let message = "Unexpected error occurred.";
+  let isNotFound = false;
   let data = "";
 
   if (isRouteErrorResponse(error)) {
@@ -21,7 +23,7 @@ function ErrorBoundary() {
       default:
         break;
     }
-  } else if (error instanceof Error) {
+  } else if (isEnvNodeDev && error instanceof Error) {
     title = error.name;
     message = error.message;
     data = error?.stack || "";
@@ -54,25 +56,12 @@ function ErrorBoundary() {
             base: "1.5rem",
             md: "2rem",
           },
-          paddingBottom: "25svh",
+          pb: "20svh",
         })}
       >
-        <h1
-          className={css({
-            marginBlock: "2rem",
-            lineHeight: "1.2",
-          })}
-        >
-          {title}
-        </h1>
-        <p
-          className={css({
-            marginBlock: "2rem",
-          })}
-        >
-          {message}
-        </p>
-        {import.meta.env.DEV && data && (
+        <h1 className={css({ mb: "2rem", lineHeight: "1.2" })}>{title}</h1>
+        <p className={css({ mb: "2rem" })}>{message}</p>
+        {isEnvNodeDev && data && (
           <code
             className={css({
               display: "block",
@@ -134,7 +123,7 @@ function ErrorBoundary() {
         >
           <img
             src="/world-map-dark.png"
-            alt=""
+            alt="background world map."
             className={css({ width: "100%", height: "auto" })}
           />
         </div>

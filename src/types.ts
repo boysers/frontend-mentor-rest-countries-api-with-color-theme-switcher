@@ -3,6 +3,15 @@ export enum ColorMode {
   Dark = "dark",
 }
 
+export enum Region {
+  Africa = "Africa",
+  Americas = "Americas",
+  Antarctic = "Antarctic",
+  Asia = "Asia",
+  Europe = "Europe",
+  Oceania = "Oceania",
+}
+
 export type BorderCountries = {
   name: Name;
   cca3: string;
@@ -48,12 +57,3 @@ export type Currency = {
   name: string;
   symbol: string;
 };
-
-export enum Region {
-  Africa = "Africa",
-  Americas = "Americas",
-  Antarctic = "Antarctic",
-  Asia = "Asia",
-  Europe = "Europe",
-  Oceania = "Oceania",
-}

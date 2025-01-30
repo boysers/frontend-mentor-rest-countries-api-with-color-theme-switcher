@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import Home from "./Home.tsx";
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { RouterProvider, createHashRouter } from "react-router";
 import { homeLoader, detailLoader } from "./loaders.ts";
 import Detail from "./Detail.tsx";
 import ErrorBoundary from "./components/ErrorBoundary.tsx";
@@ -11,7 +11,7 @@ import RootLayout from "./components/RootLayout.tsx";
 import HomeFallback from "./HomeFallback.tsx";
 import DetailFallback from "./DetailFallback.tsx";
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   [
     {
       path: "/",

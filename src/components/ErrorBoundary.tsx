@@ -1,6 +1,7 @@
 import { isRouteErrorResponse, Link, useRouteError } from "react-router";
 import { css } from "../../styled-system/css";
 import { useEffect } from "react";
+import worldMapImage from "./../assets/world-map-dark.png";
 
 function ErrorBoundary() {
   const error = useRouteError();
@@ -122,7 +123,7 @@ function ErrorBoundary() {
           })}
         >
           <img
-            src="/world-map-dark.png"
+            src={worldMapImage}
             alt="background world map."
             className={css({ width: "100%", height: "auto" })}
           />

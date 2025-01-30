@@ -11,34 +11,31 @@ import RootLayout from "./components/RootLayout.tsx";
 import HomeFallback from "./HomeFallback.tsx";
 import DetailFallback from "./DetailFallback.tsx";
 
-const router = createHashRouter(
-  [
-    {
-      path: "/",
-      element: <RootLayout />,
-      errorElement: <ErrorBoundary />,
-      children: [
-        {
-          index: true,
-          element: <Home />,
-          loader: homeLoader,
-          hydrateFallbackElement: <HomeFallback />,
-        },
-        {
-          path: "/country/:id",
-          element: <Detail />,
-          loader: detailLoader,
-          hydrateFallbackElement: <DetailFallback />,
-        },
-      ],
-    },
-    {
-      path: "*",
-      element: <NotFound />,
-    },
-  ],
-  { basename: "/frontend-mentor-rest-countries-api-with-color-theme-switcher" }
-);
+const router = createHashRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    errorElement: <ErrorBoundary />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+        loader: homeLoader,
+        hydrateFallbackElement: <HomeFallback />,
+      },
+      {
+        path: "/country/:id",
+        element: <Detail />,
+        loader: detailLoader,
+        hydrateFallbackElement: <DetailFallback />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
+]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

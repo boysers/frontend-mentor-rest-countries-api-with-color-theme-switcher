@@ -16,7 +16,7 @@ function RootLayout() {
   const [query, setQuery] = useState<string>("");
   const [region, setRegion] = useState<string>("");
 
-  const isLoading = navigation.state === "loading";
+  const isNavigating = Boolean(navigation.location);
   const isHomePage = navigation.location?.pathname === "/";
 
   const toggleColorMode = () => {
@@ -37,8 +37,8 @@ function RootLayout() {
           <div className={css({ position: "sticky", top: 0, zIndex: "100" })}>
             <Header />
           </div>
-          <div className={css({ overflow: isLoading ? "hidden" : "auto" })}>
-            {isLoading && (
+          <div className={css({ overflow: isNavigating ? "hidden" : "auto" })}>
+            {isNavigating && (
               <div
                 className={css({
                   position: "fixed",
@@ -61,7 +61,7 @@ function RootLayout() {
             )}
             <div
               className={css({
-                animation: isLoading
+                animation: isNavigating
                   ? isHomePage
                     ? "backOutRight 1s both"
                     : "backOutLeft 1s both"

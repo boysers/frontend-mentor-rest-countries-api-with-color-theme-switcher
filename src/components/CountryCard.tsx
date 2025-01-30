@@ -1,10 +1,10 @@
 import { memo } from "react";
 import { css } from "../../styled-system/css";
-import { Country } from "../types";
+import { Countries } from "../types";
 import CountryInfoList from "./CountryInfoList";
 import { NavLink } from "react-router";
 
-function CountryCard({ country }: { country: Country }) {
+function CountryCard({ country }: { country: Countries }) {
   const cardStyle = css({
     maxWidth: "18rem",
     width: "100%",

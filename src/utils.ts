@@ -1,6 +1,6 @@
 export function handleError(error: unknown): Response {
   if (error instanceof Response) {
-    return error;
+    return error.clone();
   }
 
   return new Response(
@@ -11,6 +11,6 @@ export function handleError(error: unknown): Response {
 
 export function noop(funcName: string) {
   return function () {
-    throw new Error(`${funcName} called outside of provider`);
+    throw new Error(`${funcName} called outside of provider.`);
   };
 }

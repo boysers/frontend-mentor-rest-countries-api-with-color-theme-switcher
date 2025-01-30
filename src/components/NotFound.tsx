@@ -1,29 +1,16 @@
-import { isRouteErrorResponse, Link, useRouteError } from "react-router";
+import { Link } from "react-router";
 import { css } from "../../styled-system/css";
+import { useEffect } from "react";
 
 function NotFound() {
-  const error = useRouteError();
-
-  const linkStyle = css({
-    textDecoration: "none",
-    fontWeight: 600,
-    borderRadius: "6px",
-    color: "gray.300",
-    fill: "gray.300",
-    transition: "125ms linear color, 125ms linear fill",
-    _hover: {
-      color: "gray.100",
-      fill: "gray.100",
-    },
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "8px",
-  });
+  useEffect(() => {
+    document.documentElement.setAttribute("data-color-mode", "dark");
+  }, []);
 
   return (
     <main
       className={css({
-        height: "100svh",
+        minHeight: "100svh",
         overflow: "hidden",
         display: "flex",
         justifyContent: {
@@ -55,16 +42,36 @@ function NotFound() {
         >
           404 - <span className={css({ textWrap: "nowrap" })}>Not Found</span>
         </h1>
-        <p className={css({ marginBlock: "2rem", lineHeight: "1.5" })}>
-          {isRouteErrorResponse(error)
-            ? error.data
-            : "Sorry, there's nothing on this URL."}
+        <p
+          className={css({
+            marginBlock: "2rem",
+          })}
+        >
+          Sorry, there's nothing on this URL.
         </p>
-        <Link to="/" className={linkStyle}>
+        <Link
+          to="/"
+          className={css({
+            textDecoration: "none",
+            fontWeight: 600,
+            borderRadius: "6px",
+            color: "gray.300",
+            fill: "gray.300",
+            transition: "125ms linear color, 125ms linear fill",
+            _hover: {
+              color: "gray.100",
+              fill: "gray.100",
+            },
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            fontSize: "0.75em",
+          })}
+        >
           <svg
             className={css({
-              width: "2rem",
-              height: "2rem",
+              width: "1.2em",
+              height: "1.2em",
             })}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 448 512"

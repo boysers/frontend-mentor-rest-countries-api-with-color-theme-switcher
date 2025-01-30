@@ -3,10 +3,10 @@ import { homeLoader } from "./loaders";
 import { css } from "../styled-system/css";
 import CountryCard from "./components/CountryCard";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
-import { Country } from "./types";
+import { Countries } from "./types";
 import { useQuery, useRegion } from "./hook";
 
-const filterByName = (country: Country, query: string) => {
+const filterByName = (country: Countries, query: string) => {
   const nameMatch = country.name.common
     .toLowerCase()
     .includes(query.trim().toLowerCase());
@@ -20,7 +20,7 @@ const filterByName = (country: Country, query: string) => {
   return nameMatch || nativeNameMatch;
 };
 
-const filterByRegion = (country: Country, region: string) => {
+const filterByRegion = (country: Countries, region: string) => {
   return (
     !region || country.region.toLowerCase() === region.trim().toLowerCase()
   );
@@ -236,7 +236,6 @@ function Home() {
               animationFillMode: "both",
             })}
             role="alert"
-            aria-live="polite"
           >
             <p className={css({ marginBlock: "1rem" })}>No countries found!</p>
             <button

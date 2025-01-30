@@ -3,11 +3,15 @@ export enum ColorMode {
   Dark = "dark",
 }
 
-export type BorderCountry = {
+export type BorderCountries = {
   name: Name;
   cca3: string;
-  flags: Flags;
 };
+
+export type Countries = Pick<
+  Country,
+  "cca3" | "name" | "flags" | "population" | "region" | "capital"
+>;
 
 export type Country = {
   flags: Flags;
@@ -15,7 +19,6 @@ export type Country = {
   cca3: string;
   region: Region;
   population: number;
-  flag: string;
   languages?: Record<string, string>;
   subregion?: string;
   capital?: string[];

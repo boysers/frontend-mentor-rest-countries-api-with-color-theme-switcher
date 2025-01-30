@@ -1,8 +1,8 @@
 import { Link } from "react-router";
 import { css } from "../../styled-system/css";
-import type { BorderCountry } from "../types";
+import type { BorderCountries as BorderCountries } from "../types";
 
-type BorderCountriesProps = { borders: BorderCountry[] };
+type BorderCountriesProps = { borders: BorderCountries[] };
 
 function BorderCountries({ borders }: BorderCountriesProps) {
   const containerStyle = css({
@@ -69,7 +69,11 @@ function BorderCountries({ borders }: BorderCountriesProps) {
           className={css({
             margin: 0,
             paddingBlock: "0.3rem",
-            color: "gray.300",
+            color: {
+              base: "gray.900",
+              _dark: "gray.300",
+            },
+            fontWeight: "300",
           })}
         >
           Bordering countries are not present.

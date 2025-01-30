@@ -29,11 +29,11 @@ const router = createBrowserRouter([
         loader: detailLoader,
         hydrateFallbackElement: <DetailFallback />,
       },
-      {
-        path: "*",
-        element: <NotFound />,
-      },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 
